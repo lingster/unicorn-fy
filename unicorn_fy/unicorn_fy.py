@@ -336,6 +336,7 @@ class UnicornFy(object):
                                  'best_bid_quantity': stream_data['data']['B'],
                                  'best_ask_price': stream_data['data']['a'],
                                  'best_ask_quantity': stream_data['data']['A'],
+                                 'event_time': stream_data['data']['E'],
                                  'event_type': stream_data['data']['e']}
         elif stream_data['data']['e'] == 'kline':
             stream_data['data'] = UnicornFy.set_to_false_if_not_exist(stream_data['data'], 'f')
