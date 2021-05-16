@@ -328,6 +328,17 @@ class UnicornFy(object):
                                  'trade_time': stream_data['data']['T'],
                                  'is_market_maker': stream_data['data']['m'],
                                  'ignore': stream_data['data']['M']}
+        elif stream_data['data']['e'] == 'markPriceUpdate':
+            unicorn_fied_data = {'stream_type': stream_data['stream'],
+                                 'event_type': stream_data['data']['e'],
+                                 'event_time': stream_data['data']['E'],
+                                 'symbol': stream_data['data']['s'],
+                                 'price': stream_data['data']['p'],
+                                 'index': stream_data['data']['i'],
+                                 'estimated_price': stream_data['data']['P'],
+                                 'funding_rate': stream_data['data']['r'],
+                                 'next_funding_time': stream_data['data']['T'],
+                                 }
         elif stream_data['data']['e'] == 'bookTicker':
             unicorn_fied_data = {'stream_type': stream_data['stream'],
                                  'order_book_update_id': stream_data['data']['u'],
@@ -655,6 +666,17 @@ class UnicornFy(object):
                                      'last_trade_id': stream_data['data']['l'],
                                      'trade_time': stream_data['data']['T'],
                                      'is_market_maker': stream_data['data']['m']}
+
+            elif stream_data['data']['e'] == 'bookTicker':
+                unicorn_fied_data = {'stream_type': stream_data['stream'],
+                                     'order_book_update_id': stream_data['data']['u'],
+                                     'symbol': stream_data['data']['s'],
+                                     'best_bid_price': stream_data['data']['b'],
+                                     'best_bid_quantity': stream_data['data']['B'],
+                                     'best_ask_price': stream_data['data']['a'],
+                                     'best_ask_quantity': stream_data['data']['A'],
+                                     'event_time': stream_data['data']['E'],
+                                     'event_type': stream_data['data']['e']}
             elif stream_data['data']['e'] == 'trade':
                 # Todo: KeyError: 'b'
                 # 'buyer_order_id': stream_data['data']['b'],
@@ -671,6 +693,17 @@ class UnicornFy(object):
                                      'quantity': stream_data['data']['q'],
                                      'trade_time': stream_data['data']['T'],
                                      'is_market_maker': stream_data['data']['m']}
+            elif stream_data['data']['e'] == 'markPriceUpdate':
+                unicorn_fied_data = {'stream_type': stream_data['stream'],
+                                     'event_type': stream_data['data']['e'],
+                                     'event_time': stream_data['data']['E'],
+                                     'symbol': stream_data['data']['s'],
+                                     'price': stream_data['data']['p'],
+                                     'index': stream_data['data']['i'],
+                                     'estimated_price': stream_data['data']['P'],
+                                     'funding_rate': stream_data['data']['r'],
+                                     'next_funding_time': stream_data['data']['T'],
+                                     }
             elif stream_data['data']['e'] == 'kline':
                 stream_data['data'] = UnicornFy.set_to_false_if_not_exist(stream_data['data'], 'f')
                 stream_data['data'] = UnicornFy.set_to_false_if_not_exist(stream_data['data'], 'L')
